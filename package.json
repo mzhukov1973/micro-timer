@@ -1,0 +1,84 @@
+{
+  "name": "micro-timer",
+  "short_name": "µTimer",
+  "description": "µTimer is a really silly timer PWA. Just trying out some stuff.",
+  "version": "0.1.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Maxim Zhukov",
+    "email": "mzhukov31415dev@gmail.com",
+    "url": "https://github.com/mzhukov1973"
+  },
+  "homepage": "https://micro-timer.mzhukov.now.sh",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mzhukov1973/micro-timer"
+  },
+  "bugs": {
+    "email": "mzhukov31415dev@gmail.com",
+    "url": "https://github.com/mzhukov1973/micro-timer/issues"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "latest",
+    "@fortawesome/free-brands-svg-icons": "latest",
+    "@fortawesome/free-regular-svg-icons": "latest",
+    "@fortawesome/free-solid-svg-icons": "latest",
+    "@fortawesome/react-fontawesome": "latest",
+    "@testing-library/jest-dom": "latest",
+    "@testing-library/react": "latest",
+    "@testing-library/user-event": "latest",
+    "animate.css": "latest",
+    "cra-append-sw": "latest",
+    "ms": "latest",
+    "msgr": "latest",
+    "prop-types": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-measure": "^2.3.0",
+    "react-notifications-component": "latest",
+    "react-redux": "latest",
+    "react-scripts": "latest",
+    "react-sizeme": "^2.6.12",
+    "react-spring": "latest",
+    "react-toggle": "^4.1.1",
+    "redux": "latest",
+    "redux-persist": "latest",
+    "redux-thunk": "latest",
+    "redux-timeout": "latest",
+    "redux-timer-middleware": "latest",
+    "semantic-ui-css": "latest",
+    "semantic-ui-react": "latest",
+    "styled-jsx": "latest"
+  },
+  "scripts": {
+    "startOriginalCRASW": "react-scripts start",
+    "buildOriginalCRASW": "react-scripts build",
+    "startCreateCustomSWFile": "react-scripts start && cra-append-sw --mode dev ./src/serviceWorker-custom.js",
+    "buildAppendSW": "react-scripts build && cra-append-sw ./src/serviceWorker-custom.js",
+    "buildReplaceSW": "react-scripts build && cra-append-sw --mode replace ./src/serviceWorker-custom.js",
+    "start": "yarn run startCreateCustomSWFile",
+    "build": "yarn run buildAppendSW",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "ztDeploy": "echo 'Oops(Zeit™)'"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "redux-devtools-extension": "^2.13.8"
+  }
+}
