@@ -8,7 +8,6 @@ const orN='color:orange;font-weight:normal;', orB='color:orange;font-weight:bold
 const isLocalhost = Boolean(window.location.hostname === 'localhost' || window.location.hostname === '[::1]' || window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/));
 
 export function register(config) {
-  console.warn(`%c[serviceWorker.js/%cregister%c]:%c called!%c`, orB, cyN, orB, orN, unN)
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href)
     if (publicUrl.origin !== window.location.origin) { return }
@@ -26,7 +25,6 @@ export function register(config) {
 }
 
 function registerValidSW(swUrl, config) {
-  console.warn(`%c[serviceWorker.js/%cregisterValidSW%c]:%c called! (swUrl=${swUrl})%c`, orB, cyN, orB, orN, unN)
   navigator.serviceWorker.register(swUrl).then(registration => {
       registration.onupdatefound = () => {
         const installingWorker = registration.installing
@@ -47,7 +45,6 @@ function registerValidSW(swUrl, config) {
 }
 
 function checkValidServiceWorker(swUrl, config) {
-  console.warn(`%c[serviceWorker.js/%ccheckValidServiceWorker%c]:%c called! (swUrl=${swUrl})%c`, orB, cyN, orB, orN, unN)
   fetch(swUrl, {headers:{'Service-Worker':'script'}}).then(response => {
       const contentType = response.headers.get('content-type')
       if (response.status===404 || (contentType!=null && contentType.indexOf('javascript')===-1)) {
@@ -59,7 +56,6 @@ function checkValidServiceWorker(swUrl, config) {
 }
 
 export function unregister() {
-  console.warn(`%c[serviceWorker.js/%cunregister%c]:%c called!%c`, orB, cyN, orB, orN, unN)
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready.then(registration=>registration.unregister()).catch(error=>console.error(error.message))
   }

@@ -17,7 +17,7 @@ import msgr            from 'msgr'
 
 
 
-const orN='color:orange;font-weight:normal;', orB='color:orange;font-weight:bold;', cyN='color:cyan;font-weight:normal;', unN='color:unset;font-weight:normal;'
+const orN='color:orange;font-weight:normal;', orB='color:orange;font-weight:bold;', cyN='color:cyan;font-weight:normal;', unN='color:unset;font-weight:normal;', gnN='color:green;font-weight:normal;'
 const timers = {}
 let   channel = {}
 const notificationCounter = {
@@ -31,9 +31,8 @@ const startTim = (tmrs, func, name, timeout) => {
   tmrs[name] = setInterval(func, timeout, name)
 }
 const mainTimerFunc = async () =>  {
-  await channel.send('MAIN_TIMER_TICK')
   if (notificationCounter.mainTimerSixtieth===60) {
-    notificationCounter.mainTimerSixtieth = notificationCounter.mainTimerSixtieth===60 ? 0 : (notificationCounter.mainTimerSixtieth+1)
+    notificationCounter.mainTimerSixtieth = 0
     const title = 'The 60ᵗʰ tick!'
     const options = {
       body:'The sixtieth mainTimer tick has been successfully dispatched.',
@@ -49,6 +48,8 @@ const mainTimerFunc = async () =>  {
 //    event.waitUntil(self.registration.showNotification(title, options))
     self.registration.showNotification(title, options)
   }
+  notificationCounter.mainTimerSixtieth++
+  await channel.send('MAIN_TIMER_TICK')
 }
 const doStartMainTimer = async (timeout=1000) => startTim(timers, mainTimerFunc, 'mainTimer', timeout)
 const startMainTimer = (timeout, respond) => doStartMainTimer(timeout).then( ()=>respond('(SW) Main timer started!') )
@@ -62,23 +63,18 @@ const doClearMainTimer = async () => {
 const clearMainTimer = (data, respond) => doClearMainTimer().then( rslt=>respond(rslt) )
 
 const startClientComms = () => {
-  console.warn(`%c[serviceWorker-custom.js/%cstartClientComms%c]:%c called!%c`, orB, cyN, orB, orN, unN)
   channel = msgr.worker({START_MAIN_TIMER:startMainTimer, CLEAR_MAIN_TIMER:clearMainTimer})
   if (!channel)  {
     console.warn(`%c[serviceWorker-custom.js/%cstartClientComms%c]:%c No channel found - skipping SW ⇄ App comms start!%c`, orB, cyN, orB, orN, unN)
   } else {
-    channel.ready(()=>{
-      console.warn(`%c[serviceWorker-custom.js/%cstartClientComms%c]:%c Channel is ready.%c`, orB, cyN, orB, orN, unN)
-    })
+    channel.ready(()=>{})
   }
 }
 
 const handleInstall = ev => {
-  console.warn(`%c[serviceWorker-custom.js/%chandleInstall%c]:%c called!%c`, orB, cyN, orB, orN, unN)
   self.skipWaiting()
 }
 const handleActivate = ev => {
-  console.warn(`%c[serviceWorker-custom.js/%chandleActivate%c]:%c called!%c`, orB, cyN, orB, orN, unN)
   ev.waitUntil(clients.claim())
   startClientComms()
 }
