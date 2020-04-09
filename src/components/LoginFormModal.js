@@ -15,7 +15,7 @@
 /******************************************************************************/
 import   React                                                     from 'react'
 import   PropTypes                                                 from 'prop-types'
-import { Icon, Button, Grid, Form, Header, Image, Segment, Modal } from 'semantic-ui-react'
+import { Button, Grid, Form, Header, Image, Segment, Modal } from 'semantic-ui-react'
 import   logo                                                      from '../images/logo-256.png'
 
 
@@ -58,15 +58,15 @@ class LoginFormModal extends React.Component {
   render = () => {
     return (
       <>
-       <Modal trigger={<Button onClick={this.handleOpen} size='mini' color='green' icon='sign-in'compact/>} open={this.props.loginModalState} onClose={this.handleClose} onOpen={this.handleOpen} size='small' dimmer='blurring' className='modal' basic>
+       <Modal trigger={<Button onClick={this.handleOpen} size='mini' color='green' icon='sign-in' compact/>} open={this.props.loginModalState} onClose={this.handleClose} onOpen={this.handleOpen} size='small' dimmer='blurring' className='modal' basic>
         <Modal.Content className='modalCont' scrolling={false}>
          <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
-           <Header as='h2' color='teal' textAlign='center'><Image src={logo}/>RestauAdm|ᵦ</Header>
+           <Header as='h2' color='teal' textAlign='center'><Image src={logo}/>µTimer</Header>
            <Form size='large'>
             <Segment>
-             <Form.Input fluid icon='phone' iconPosition='left' placeholder='Телефон' onChange={this.handleFrmPhoneChange}    value={this.props.username} autocomplete='username'/>
-             <Form.Input fluid icon='lock'  iconPosition='left' placeholder='Пароль'  onChange={this.handleFrmPasswordChange} value={this.props.userpwd} autocomplete='current-password' type='password'/>
+             <Form.Input fluid icon='phone' iconPosition='left' placeholder='Телефон' onChange={this.handleFrmPhoneChange}    value={this.props.username} autoComplete='username'/>
+             <Form.Input fluid icon='lock'  iconPosition='left' placeholder='Пароль'  onChange={this.handleFrmPasswordChange} value={this.props.userpwd}  autoComplete='current-password' type='password'/>
              <Button color='teal' fluid size='large' onClick={this.handleLogin}>Войти</Button>
             </Segment>
            </Form>

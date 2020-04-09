@@ -1,0 +1,9 @@
+push
+push.sh
+git_add_last.log
+git_commit_last.log
+git_push_last.log
+README.md
+AUTHORS
+LICENSE
+/MiscResources

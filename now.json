@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "scope": "mzhukov",
+  "public": false,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "github": {
+    "enabled": false
+  },
+  "env": {
+  }
+}

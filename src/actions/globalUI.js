@@ -18,11 +18,19 @@
 //import { addTimeout, removeTimeout }  from 'redux-timeout'
 
 const types = {
-  SET_TAB_IDX: 'SET_INDEX_OF_CURRENTLY_ACTIVE_TAB'
+  SET_TAB_IDX:         'SET_INDEX_OF_CURRENTLY_ACTIVE_TAB',
+  SET_BMENU_OPEN:      'SET_BURGER_MENU_OPEN_STATE',
+  SET_SETTINGS_OPEN:   'SET_SETTINGS_PAGE_OPEN_STATE',
+  SET_SYSFEED_OPEN:    'SET_SYSTEM_FEED_OPEN_STATE',
+  SET_EXT_STATUS_OPEN: 'SET_EXTENDED_STATUS_PAGE_OPEN_STATE'
 }
 
 const creators = {
-  setTabIdx: newIdx => ( {type:types.SET_TAB_IDX, data:newIdx} )
+  setTabIdx:        newIdx => ( {type:types.SET_TAB_IDX,         data:newIdx} ),
+  setBMenuOpen:     isOpen => ( {type:types.SET_BMENU_OPEN,      data:isOpen} ),
+  setSettingsOpen:  isOpen => ( {type:types.SET_SETTINGS_OPEN,   data:isOpen} ),
+  setSysFeedOpen:   isOpen => ( {type:types.SET_SYSFEED_OPEN,    data:isOpen} ),
+  setExtStatusOpen: isOpen => ( {type:types.SET_EXT_STATUS_OPEN, data:isOpen} )
 }
 
 const globalUI = { types, creators }

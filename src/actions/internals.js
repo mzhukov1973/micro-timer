@@ -23,12 +23,18 @@ const types = {
     return ((!rslt!==true && !rslt.groups!==true && !rslt.groups.timerName!==true) ? rslt.groups.timerName : false)
   },
   timerName2TickAct:    (tickActionBaseType,timerName) => `${tickActionBaseType}_BY_${timerName}`,
-  MAIN_SYS_TICK:                   'TICK_ACTION_BY_MAIN_SYSTEM_TIMER'
+  MAIN_SYS_TICK:                   'TICK_ACTION_BY_MAIN_SYSTEM_TIMER',
+  SET_TSTART:                      'SET_TIMER_START_TIMESTAMP',
+  SET_TCURR:                       'SET_TIMER_CURRENT_TIMESTAMP',
+  SET_MAIN_TIMER_ON:               'SET_MAIN_TIMER_STATUS'
 }
 
 const creators = {
-  startMainTicks:     ()                    => ( {type:START_TIMER, payload:{actionName:types.MAIN_SYS_TICK, timerName:types.tickAct2TimerName(types.MAIN_SYS_TICK), actionPayload:types.tickAct2TimerName(types.MAIN_SYS_TICK), timerInterval:1000, timerPeriod:-1}} ), /* N.B.: set period to -1 to nake ticks payload available with infinitely running timers. */
-  stopMainTicks:      ()                    => ( {type:STOP_TIMER,  payload:{timerName:types.tickAct2TimerName(types.MAIN_SYS_TICK)}                                                                                                                             } ),
+  startMainTicks:     ()                    => ( {type:START_TIMER, payload:{actionName:types.MAIN_SYS_TICK, timerName:types.tickAct2TimerName(types.MAIN_SYS_TICK), actionPayload:types.tickAct2TimerName(types.MAIN_SYS_TICK), timerInterval:1000, timerPeriod:-1}} ), /* N.B.: set period to -1 to make ticks payload available with infinitely running timers. */
+  stopMainTicks:      ()                    => ( {type:STOP_TIMER,  payload:{timerName:types.tickAct2TimerName(types.MAIN_SYS_TICK)}                                                                                                                                } ),
+  setMainTimerOn:     isOn                  => ( {type:types.SET_MAIN_TIMER_ON, data:isOn  } ),
+  setTStart:          tStamp                => ( {type:types.SET_TSTART,        data:tStamp} ),
+  setTCurr:           tStamp                => ( {type:types.SET_TCURR,         data:tStamp} ),
   stopActionMonitor:  action                => dispatch => dispatch(removeTimeout(action)),
   startActionMonitor: (timeout, action, cB) => dispatch => dispatch(addTimeout(timeout, action, cB))
 }

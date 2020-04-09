@@ -13,15 +13,34 @@
 /*  See the License for the specific language governing permissions and       */
 /*  limitations under the License.                                            */
 /******************************************************************************/
-import   React      from 'react'
-
-
-
-const baseZeit  = 'https://micro-timer.mzhukov.now.sh'
-const baseLocal = 'http://localhost:3001'
+const baseZeit  = 'https://micro-timer.now.sh'
+const baseLocal = 'https://localhost:3000'
 const bEnd      = 'zeit'
 const base      = bEnd === 'local' ? baseLocal : baseZeit
 const emBaseAPI = 'https://ecomarket.ru/api.php'
+
+export const apiEndpoint = {
+  login:       `${base}/api/login`,
+  users:       `${base}/api/users`,
+  orders:      `${base}/api/data/orders`,
+  restaurants: `${base}/api/data/restaurants`,
+  emAPIActions: {
+    getAuthByCookie: { action:'getAuthByCookie', params:[]                                       },
+    getAuthToken:    { action:'getAuthToken',    params:[]                                       },
+    doLogin:         { action:'doLogin',         params:[]                                       },
+    getCatalog:      { action:'getCatalog',      params:[]                                       },
+    getProductByUrl: { action:'getProductByUrl', params:[]                                       },
+    getCatByUrl:     { action:'getCatByUrl',     params:[]                                       },
+    appStartUp:      { action:'appStartUp',      params:[]                                       },
+    appStartUp_v2:   { action:'appStartUp_v2',   params:[{name:'REGION',method:'GET',defVal:77}] }, // 77,78
+    getPageData:     { action:'getPageData',     params:[]                                       },
+    getOrders:       { action:'getOrders',       params:[]                                       },
+    getLastOrder:    { action:'getLastOrder',    params:[]                                       }
+  },
+  emBaseAPI:     emBaseAPI,
+  ecoApiGateway: emBaseAPI,
+  emApiGenUrl:   (action,parms=[]) => `${emBaseAPI}?action=${action}${parms.length>0?parms.reduce((acc,el)=>acc+=`&${el.name}=${el.value}`):''}` /* E.g.: emApiGenUrl('appStartUp_v2',[{name:'REGION',value:77}]) or emApiGenUrl('getAuthToken',[]) or emApiGenUrl('getCatalog') */
+}
 
 export const actionTriplet = type => ({REQ:type+'_REQUEST', OK:type+'_SUCCESS', FAIL:type+'_FAILURE'})
 

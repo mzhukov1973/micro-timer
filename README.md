@@ -2,7 +2,7 @@
 
 | | |
 |---:|:---|
-|**Site:**|[https://micro-timer.mzhukov.now.sh](https://micro-timer.mzhukov.now.sh)|
+|**Site:**|[https://micro-timer.now.sh](https://micro-timer.now.sh)|
 |**Version:**|0.1.0|
 |**License:**|Apache-2.0|
 |**Author:**|Maxim&nbsp;Zhukov<br>email:&emsp;[mzhukov31415dev@gmail.com](mailto:mzhukov31415dev@gmail.com)<br>www:&emsp;[https://github.com/mzhukov1973](https://github.com/mzhukov1973)|

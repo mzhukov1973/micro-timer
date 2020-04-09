@@ -20,6 +20,18 @@ const globalUI = (state={}, action) => {
     case gTyp.SET_TAB_IDX:
      return ({...state, tabActiveIndex:action.data})
 
+    case gTyp.SET_BMENU_OPEN:
+     return ({...state, burgerMenuOpen:action.data})
+
+    case gTyp.SET_SETTINGS_OPEN:
+     return ({...state, settingsOpen:action.data})
+
+    case gTyp.SET_SYSFEED_OPEN:
+     return ({...state, systemFeedOpen:action.data})
+
+    case gTyp.SET_EXT_STATUS_OPEN:
+     return ({...state, extendedStatusOpen:action.data})
+
     default:
      return state
   }

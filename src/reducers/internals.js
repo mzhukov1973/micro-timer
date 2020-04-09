@@ -18,11 +18,21 @@ import { iTyp }  from '../actions'
 const internals = (state={}, action) => {
   switch (action.type) {
     case iTyp.MAIN_SYS_TICK:
-     return ({...state, mainReduxTimerOn:iTyp.tickAct2TimerName(iTyp.MAIN_SYS_TICK)})
+//     return (state.mainReduxTimerOn===false?{...state, mainReduxTimerOn:iTyp.tickAct2TimerName(iTyp.MAIN_SYS_TICK), timerCurrentTimeStamp:Date.now()}:{...state, timerCurrentTimeStamp:Date.now()})
+     return (state.mainReduxTimerOn===false?{...state, mainReduxTimerOn:iTyp.tickAct2TimerName(iTyp.MAIN_SYS_TICK)}:state)
 
     case iTyp.MAIN_SYS_TICK+'_END':
-     console.log(`iTyp.MAIN_SYS_TICK+'_END': received! Here it is: %o`, action)
+//     console.log(`iTyp.MAIN_SYS_TICK+'_END': received! Here it is: %o`, action)
      return ({...state, mainReduxTimerOn:false})
+
+    case iTyp.SET_TSTART:
+     return ({...state, timerStartTimeStamp:action.data})
+
+    case iTyp.SET_TCURR:
+     return ({...state, timerCurrentTimeStamp:action.data})
+
+    case iTyp.SET_MAIN_TIMER_ON:
+     return ({...state, mainTimerOn:action.data})
 
     default:
      return state

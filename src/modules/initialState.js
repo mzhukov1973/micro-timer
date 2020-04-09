@@ -19,7 +19,7 @@ const initialState = {
     username: false,
     userpwd: false,
     bearerToken: false,
-    apiNewToken: '9f3a05e0b9af47ceee7f8bb99fe68b5a',
+    apiNewToken: false,
     tokenIssuedOn: -1,
     tokenExpiresOn: -1,
     authenticatedAsUID: false,
@@ -43,7 +43,10 @@ const initialState = {
     extendedStatusOpen: false
   },
   internals: {
-    mainReduxTimerOn: false
+    mainReduxTimerOn: false,
+    mainTimerOn: false,
+    timerStartTimeStamp: false,
+    timerCurrentTimeStamp: false
   }
 }
 

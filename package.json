@@ -10,7 +10,7 @@
     "email": "mzhukov31415dev@gmail.com",
     "url": "https://github.com/mzhukov1973"
   },
-  "homepage": "https://micro-timer.mzhukov.now.sh",
+  "homepage": "https://micro-timer.now.sh",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mzhukov1973/micro-timer"
@@ -25,7 +25,7 @@
     "@fortawesome/free-regular-svg-icons": "latest",
     "@fortawesome/free-solid-svg-icons": "latest",
     "@fortawesome/react-fontawesome": "latest",
-    "@testing-library/jest-dom": "latest",
+    "@testing-library/jest-dom": "^5.4.0",
     "@testing-library/react": "latest",
     "@testing-library/user-event": "latest",
     "animate.css": "latest",
@@ -51,17 +51,38 @@
     "semantic-ui-react": "latest",
     "styled-jsx": "latest"
   },
+  "bundleDependencies": [
+    "react",
+    "react-dom",
+    "react-redux",
+    "redux",
+    "prop-types",
+    "redux-persist",
+    "styled-jsx",
+    "redux-thunk",
+    "ms",
+    "semantic-ui-css",
+    "semantic-ui-react",
+    "redux-timeout",
+    "msgr",
+    "redux-timer-middleware",
+    "react-spring",
+    "cra-append-sw",
+    "react-notifications-component",
+    "react-toggle",
+    "react-measure",
+    "react-sizeme"
+  ],
   "scripts": {
     "startOriginalCRASW": "react-scripts start",
     "buildOriginalCRASW": "react-scripts build",
-    "startCreateCustomSWFile": "react-scripts start && cra-append-sw --mode dev ./src/serviceWorker-custom.js",
-    "buildAppendSW": "react-scripts build && cra-append-sw ./src/serviceWorker-custom.js",
-    "buildReplaceSW": "react-scripts build && cra-append-sw --mode replace ./src/serviceWorker-custom.js",
+    "startCreateCustomSWFile": "react-scripts start && cra-append-sw --skip-compile --mode dev     ./src/serviceWorker-custom.js",
+    "buildAppendSW": "react-scripts build && cra-append-sw --skip-compile                ./src/serviceWorker-custom.js",
+    "buildReplaceSW": "react-scripts build && cra-append-sw --skip-compile --mode replace ./src/serviceWorker-custom.js",
     "start": "yarn run startCreateCustomSWFile",
     "build": "yarn run buildAppendSW",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "ztDeploy": "echo 'Oops(Zeit™)'"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -26,8 +26,8 @@ import   internals         from '../reducers/internals'
 
 const writeFailHandler = error => console.log('[writeFailHandler]: Error! setitem() called on the storage engine when persisting the state has just failed! Storage/quota exhausted?')
 const bCfg = {
-  storage:          storage,
-  stateReconciler:  autoMergeLevel2,
+  storage: storage,
+  stateReconciler: autoMergeLevel2,
   writeFailHandler: writeFailHandler
 }
 const reducers                         = { auth, globalUI, internals }
@@ -35,12 +35,12 @@ const genPersistConfigs                = () => Object.fromEntries(['root',...Obj
 const getPersistReducer                = key => persistReducer(persistConfigs[key], reducers[key])
 const persistConfigs                   = genPersistConfigs()
 
-persistConfigs.root['blacklist']         = ['auth']
-persistConfigs.auth['blacklist']         = ['apiModalState', 'loginModalState', 'refreshingToken', 'loggingOut', 'loadingUserData', 'authenticating']
-//persistConfigs.root['blacklist']       = ['globalUI']
-//persistConfigs.globalUI['blacklist']   = []
-persistConfigs.root['blacklist']         = ['internals']
-persistConfigs.internals['blacklist']    = ['mainReduxTimerOn']
+persistConfigs.root['blacklist']       = ['auth']
+persistConfigs.auth['blacklist']       = ['apiModalState', 'loginModalState', 'refreshingToken', 'loggingOut', 'loadingUserData', 'authenticating']
+persistConfigs.root['blacklist']       = ['globalUI']
+persistConfigs.globalUI['blacklist']   = ['burgerMenuOpen', 'settingsOpen', 'systemFeedOpen', 'extendedStatusOpen']
+//persistConfigs.root['blacklist']       = ['internals']
+//persistConfigs.internals['blacklist']  = []
 
 const rootReducer = combineReducers( Object.fromEntries(Object.keys(reducers).map(reducerName=>[reducerName,getPersistReducer(reducerName)])) )
 

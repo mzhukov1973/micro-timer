@@ -15,7 +15,7 @@
     ],
     "theme_color": "#808000",
     "background_color": "#808000",
-    "start_url": "https://micro-timer.mzhukov.now.sh",
+    "start_url": "https://micro-timer.now.sh",
     "display": "standalone",
     "orientation": "portrait"
 }
