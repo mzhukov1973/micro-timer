@@ -75,8 +75,11 @@ class App extends React.Component {
   componentDidMount = () => {
 //    this.props.internalsCr.startMainTicks()
 //    this.props.internalsCr.startActionMonitor(3000, actions.internals.types.MAIN_SYS_TICK, ()=>console.log(`[REDUX-TIMEOUT]: Action ${actions.internals.types.MAIN_SYS_TICK} has just timed out - it wasn't seen for more than 3 seconds. Alarm!!`))
+
     this.updateWindowDimensions()
+
     window.addEventListener('resize', this.updateWindowDimensions)
+
     navigator.serviceWorker.ready.then(
       registration => this.setState(
         { swChannel:msgr.client(navigator.serviceWorker.controller,{MAIN_TIMER_TICK:this.handleMainTimerTick}) },

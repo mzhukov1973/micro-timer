@@ -13,12 +13,19 @@
 /*  See the License for the specific language governing permissions and       */
 /*  limitations under the License.                                            */
 /******************************************************************************/
-import msgr from 'msgr'
-
+import msgr            from 'msgr'
+import logo512         from './src/images/logo-512.png'
+import badge128        from './src/images/badge-128.png'
+import settingsIcon128 from './src/images/settingsIcon-128.png'
+import stopIcon128     from './src/images/stopIcon-128.png'
 
 
 const orN='color:orange;font-weight:normal;', orB='color:orange;font-weight:bold;', cyN='color:cyan;font-weight:normal;', unN='color:unset;font-weight:normal;'
 const timers = {}
+let   channel = {}
+const notificationCounter = {
+  mainTimerSixtieth: 0
+}
 const clearAllTims = tmrs => Object.values(tmrs).forEach( el => clearInterval(el) )
 const startTim = (tmrs, func, name, timeout) => {
   if (typeof tmrs[name]==='number') {
@@ -28,12 +35,19 @@ const startTim = (tmrs, func, name, timeout) => {
 }
 const mainTimerFunc = async () =>  {
   await channel.send('MAIN_TIMER_TICK')
-  if (true) {
-    const title = 'Push Codelab'
+  if (notificationCounter.mainTimerSixtieth===60) {
+    notificationCounter.mainTimerSixtieth = notificationCounter.mainTimerSixtieth===60 ? 0 : (notificationCounter.mainTimerSixtieth+1)
+    const title = 'The 60ᵗʰ tick!'
     const options = {
-      body:'Yay it works.',
-      icon:'images/icon.png',
-      badge:'images/badge.png'
+      body:'The sixtieth mainTimer tick has been successfully dispatched.',
+      icon: logo512,
+      badge: badge128,
+      tag: 'mtSixty',
+      actions:[
+        {action:'cease-action',    title:'Stop',     icon:stopIcon128    },
+        {action:'settings-action', title:'Settings', icon:settingsIcon128}
+      ],
+      timestamp: Date.now()
     }
 //    event.waitUntil(self.registration.showNotification(title, options))
     self.registration.showNotification(title, options)
@@ -46,13 +60,12 @@ const doClearMainTimer = async () => {
     clearInterval(timers['mainTimer'])
     return '(SW) Main timer cleared!'
   }
-  return '(SW) Main timer not found, skipped clearing...'
+  return '(SW) Main timer not found, skipping clearing...'
 }
 const clearMainTimer = (data, respond) => doClearMainTimer().then( rslt=>respond(rslt) )
 
-const channel = msgr.worker({START_MAIN_TIMER:startMainTimer, CLEAR_MAIN_TIMER:clearMainTimer})
-
 const startClientComms = () => {
+  channel = msgr.worker({START_MAIN_TIMER:startMainTimer, CLEAR_MAIN_TIMER:clearMainTimer})
   if (!channel)  {
     console.warn(`%c[serviceWorker-custom.js/%cstartClientComms%c]:%c No channel found - skipping SW ⇄ App comms start!%c`, orB, cyN, orB, orN, unN)
   } else {
