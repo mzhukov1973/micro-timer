@@ -76,9 +76,9 @@
   "scripts": {
     "startOriginalCRASW": "react-scripts start",
     "buildOriginalCRASW": "react-scripts build",
-    "startCreateCustomSWFile": "react-scripts start && cra-append-sw --skip-compile --mode dev     ./src/serviceWorker-custom.js",
-    "buildAppendSW": "react-scripts build && cra-append-sw --skip-compile                ./src/serviceWorker-custom.js",
-    "buildReplaceSW": "react-scripts build && cra-append-sw --skip-compile --mode replace ./src/serviceWorker-custom.js",
+    "startCreateCustomSWFile": "react-scripts start && cra-append-sw --mode dev ./src/serviceWorker-custom.js",
+    "buildAppendSW": "react-scripts build && cra-append-sw ./src/serviceWorker-custom.js",
+    "buildReplaceSW": "react-scripts build && cra-append-sw --mode replace ./src/serviceWorker-custom.js",
     "start": "yarn run startCreateCustomSWFile",
     "build": "yarn run buildAppendSW",
     "test": "react-scripts test",

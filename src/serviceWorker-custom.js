@@ -14,10 +14,10 @@
 /*  limitations under the License.                                            */
 /******************************************************************************/
 import msgr            from 'msgr'
-import logo512         from './src/images/logo-512.png'
-import badge128        from './src/images/badge-128.png'
-import settingsIcon128 from './src/images/settingsIcon-128.png'
-import stopIcon128     from './src/images/stopIcon-128.png'
+import logo512         from `${process.env.PUBLIC_URL}/images/logo-512.png`
+import badge128        from `${process.env.PUBLIC_URL}/images/badge-128.png`
+import settingsIcon128 from `${process.env.PUBLIC_URL}/images/settingsIcon-128.png`
+import stopIcon128     from `${process.env.PUBLIC_URL}/images/stopIcon-128.png`
 
 
 const orN='color:orange;font-weight:normal;', orB='color:orange;font-weight:bold;', cyN='color:cyan;font-weight:normal;', unN='color:unset;font-weight:normal;'
@@ -65,18 +65,23 @@ const doClearMainTimer = async () => {
 const clearMainTimer = (data, respond) => doClearMainTimer().then( rslt=>respond(rslt) )
 
 const startClientComms = () => {
+  console.warn(`%c[serviceWorker-custom.js/%cstartClientComms%c]:%c called!%c`, orB, cyN, orB, orN, unN)
   channel = msgr.worker({START_MAIN_TIMER:startMainTimer, CLEAR_MAIN_TIMER:clearMainTimer})
   if (!channel)  {
     console.warn(`%c[serviceWorker-custom.js/%cstartClientComms%c]:%c No channel found - skipping SW ⇄ App comms start!%c`, orB, cyN, orB, orN, unN)
   } else {
-    channel.ready(()=>{})
+    channel.ready(()=>{
+      console.warn(`%c[serviceWorker-custom.js/%cstartClientComms%c]:%c Channel is ready.%c`, orB, cyN, orB, orN, unN)
+    })
   }
 }
 
 const handleInstall = ev => {
+  console.warn(`%c[serviceWorker-custom.js/%chandleInstall%c]:%c called!%c`, orB, cyN, orB, orN, unN)
   self.skipWaiting()
 }
 const handleActivate = ev => {
+  console.warn(`%c[serviceWorker-custom.js/%chandleActivate%c]:%c called!%c`, orB, cyN, orB, orN, unN)
   ev.waitUntil(clients.claim())
   startClientComms()
 }
@@ -124,7 +129,7 @@ self.addEventListener('push', function(event) {
 
   var title = 'Yay a message.'
   var body = 'We have received a push message.'
-  var icon = '/images/icon-192x192.png'
+  var icon = `${process.env.PUBLIC_URL}/images/icon-192x192.png`
   var tag = 'simple-push-demo-notification-tag'
 
   event.waitUntil(

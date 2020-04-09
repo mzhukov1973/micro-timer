@@ -16,7 +16,7 @@
 import   React                                                     from 'react'
 import   PropTypes                                                 from 'prop-types'
 import { Button, Grid, Form, Header, Image, Segment, Modal } from 'semantic-ui-react'
-import   logo                                                      from '../images/logo-256.png'
+import   logo                                                      from `${process.env.PUBLIC_URL}/images/logo-256.png`
 
 
 
