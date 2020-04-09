@@ -16,7 +16,6 @@
 import   React                                                     from 'react'
 import   PropTypes                                                 from 'prop-types'
 import { Button, Grid, Form, Header, Image, Segment, Modal } from 'semantic-ui-react'
-import   logo                                                      from `${process.env.PUBLIC_URL}/images/logo-256.png`
 
 
 
@@ -62,7 +61,7 @@ class LoginFormModal extends React.Component {
         <Modal.Content className='modalCont' scrolling={false}>
          <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
-           <Header as='h2' color='teal' textAlign='center'><Image src={logo}/>µTimer</Header>
+           <Header as='h2' color='teal' textAlign='center'><Image src={`${process.env.PUBLIC_URL}/images/logo-256.png`}/>µTimer</Header>
            <Form size='large'>
             <Segment>
              <Form.Input fluid icon='phone' iconPosition='left' placeholder='Телефон' onChange={this.handleFrmPhoneChange}    value={this.props.username} autoComplete='username'/>

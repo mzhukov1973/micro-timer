@@ -14,10 +14,7 @@
 /*  limitations under the License.                                            */
 /******************************************************************************/
 import msgr            from 'msgr'
-import logo512         from `${process.env.PUBLIC_URL}/images/logo-512.png`
-import badge128        from `${process.env.PUBLIC_URL}/images/badge-128.png`
-import settingsIcon128 from `${process.env.PUBLIC_URL}/images/settingsIcon-128.png`
-import stopIcon128     from `${process.env.PUBLIC_URL}/images/stopIcon-128.png`
+
 
 
 const orN='color:orange;font-weight:normal;', orB='color:orange;font-weight:bold;', cyN='color:cyan;font-weight:normal;', unN='color:unset;font-weight:normal;'
@@ -40,12 +37,12 @@ const mainTimerFunc = async () =>  {
     const title = 'The 60ᵗʰ tick!'
     const options = {
       body:'The sixtieth mainTimer tick has been successfully dispatched.',
-      icon: logo512,
-      badge: badge128,
+      icon: `${process.env.PUBLIC_URL}/images/logo-512.png`,
+      badge: `${process.env.PUBLIC_URL}/images/badge-128.png`,
       tag: 'mtSixty',
       actions:[
-        {action:'cease-action',    title:'Stop',     icon:stopIcon128    },
-        {action:'settings-action', title:'Settings', icon:settingsIcon128}
+        {action:'cease-action',    title:'Stop',     icon:`${process.env.PUBLIC_URL}/images/stopIcon-128.png`    },
+        {action:'settings-action', title:'Settings', icon:`${process.env.PUBLIC_URL}/images/settingsIcon-128.png`}
       ],
       timestamp: Date.now()
     }
